@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{documentation?documentation.title:''}}{% endblock %}
+
+{% block body %}
+    <h1>{{documentation.title  }}</h1>
+{{ documentation?documentation.contents|raw:''}}
+{% endblock %}

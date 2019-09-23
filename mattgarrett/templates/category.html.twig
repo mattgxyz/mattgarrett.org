@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{category?category.name:''}}{% endblock %}
+
+{% block body %}
+    <h1>{{category.name  }}</h1>
+    <ul>
+    {% for documentation in docs %}
+        <li><a href="{{ path('home', {path:documentation.path}) }}">{{ documentation.title}}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

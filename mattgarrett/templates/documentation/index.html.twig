@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Documentation index{% endblock %}
+
+{% block body %}
+    <div class="float-right">
+    <a href="{{ path('admin-documentation-edit') }}" class="btn btn-success">+ Create new</a>
+    </div>
+    <h1>Documentation index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Contents</th>
+                <th>Category</th>
+                <th>Path</th>
+                <th>UpdatedAt</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for documentation in documentations %}
+            <tr>
+                <td> <a href="{{ path('admin-documentation-edit', {'id': documentation.id}) }}">{{ documentation.title }}</a></td>
+                <td>{{ documentation.contents }}</td>
+                <td>{{ documentation.category }}</td>
+                <td><a href="{{ path('home', {path:documentation.path}) }}">/{{ documentation.path }}</a></td>
+                <td>{{ documentation.updatedAt ? documentation.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
